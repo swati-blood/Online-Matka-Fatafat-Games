@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/all"
+    tools:context=".Fragment.HomeFragment">
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:background="@color/all"
+     android:orientation="vertical">
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:background="@drawable/bg_gradeint">
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_toLeftOf="@+id/lin_wallet"
+             android:layout_height="wrap_content"
+             android:id="@+id/tv_title"
+             android:text="@string/app_name"
+             android:textColor="@color/white"
+             android:textSize="20dp"
+             style="@style/headingText"
+             android:layout_margin="@dimen/space_20"
+             android:textStyle="bold"/>
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/lin_wallet"
+             android:layout_marginRight="@dimen/space_20"
+             android:layout_marginLeft="@dimen/space_20"
+             android:gravity="center_vertical"
+             android:layout_centerVertical="true"
+             android:orientation="horizontal"
+             android:layout_alignParentRight="true">
+             <ImageView
+                 android:layout_width="@dimen/space_30"
+                 android:layout_height="@dimen/space_30"
+
+                 android:src="@drawable/icons8_wallet_128px"/>
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_toLeftOf="@+id/lin_wallet"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/tv_wallet"
+                 android:paddingLeft="@dimen/space_5"
+                 android:textColor="@color/white"
+                 android:textSize="18dp"
+                 style="@style/headingText"
+
+                 android:textStyle="bold"/>
+         </LinearLayout>
+     </RelativeLayout>
+
+     <ImageView
+         android:layout_width="match_parent"
+         android:layout_height="200dp"
+         android:src="@drawable/banner"
+         android:scaleType="center"
+         android:id="@+id/iv_home_slider"/>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:weightSum="4"
+         android:layout_marginTop="-10dp"
+         android:layout_marginLeft="@dimen/space_5"
+         android:layout_marginRight="@dimen/space_5"
+         android:gravity="center"
+        android:paddingTop="@dimen/space_10"
+         android:paddingBottom="@dimen/space_10"
+         android:paddingLeft="@dimen/space_10"
+         android:paddingRight="@dimen/space_10"
+         android:background="@drawable/bg_button_outline">
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/lin_whtsapp"
+             android:layout_weight="1.8"
+
+             android:gravity="center_vertical"
+             android:layout_centerVertical="true"
+             android:orientation="horizontal"
+             android:layout_alignParentRight="true">
+             <ImageView
+                 android:layout_width="@dimen/space_30"
+                 android:layout_height="@dimen/space_30"
+
+                 android:src="@drawable/icons8_whatsapp_96px"/>
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_toLeftOf="@+id/lin_wallet"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/tv_whatsaap"
+                 android:paddingLeft="@dimen/space_5"
+                 android:textColor="@color/black"
+                 android:textSize="18dp"
+                 style="@style/headingText"
+
+                 android:textStyle="bold"/>
+         </LinearLayout>
+         <View
+             android:layout_width="@dimen/space_2"
+             android:layout_height="match_parent"
+                android:layerType="software"
+             android:layout_margin="@dimen/space_2"
+             android:background="@color/colorPrimaryDark"/>
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/lin_call"
+             android:layout_weight="1.8"
+
+             android:gravity="center_vertical"
+             android:layout_centerVertical="true"
+             android:orientation="horizontal"
+             android:layout_alignParentRight="true">
+             <ImageView
+                 android:layout_width="@dimen/space_30"
+                 android:layout_height="@dimen/space_30"
+                    android:padding="@dimen/space_3"
+                 android:src="@drawable/phonecall"/>
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_toLeftOf="@+id/lin_wallet"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/tv_call"
+                 android:paddingLeft="@dimen/space_5"
+                 android:textColor="@color/black"
+                 android:textSize="18dp"
+                 style="@style/headingText"
+
+                 android:textStyle="bold"/>
+         </LinearLayout>
+     </LinearLayout>
+
+     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+         android:id="@+id/swipe"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+>
+
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         >
+         <androidx.recyclerview.widget.RecyclerView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/rv_matka"/>
+     </RelativeLayout>
+     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+ </LinearLayout>
+
+</FrameLayout>

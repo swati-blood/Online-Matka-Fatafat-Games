@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/icons8_home_128px"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_wallet"
+        android:icon="@drawable/icons8_wallet_128px"
+        android:title="Wallet" />
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/icons8_settings_240px_1"
+        android:title="Settings" />
+
+</menu>

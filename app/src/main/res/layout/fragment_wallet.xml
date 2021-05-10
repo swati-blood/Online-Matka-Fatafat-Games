@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/all"
+
+    tools:context=".Fragment.WalletFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_10"
+        android:background="@color/all"
+        android:orientation="vertical">
+
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/space_15"
+   android:layout_margin="@dimen/space_10"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_20"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lin_wallet"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginLeft="@dimen/space_20"
+            android:gravity="center_vertical"
+
+            android:orientation="horizontal"
+         >
+            <ImageView
+                android:layout_width="@dimen/space_30"
+                android:layout_height="@dimen/space_30"
+                app:tint="@color/black"
+                android:src="@drawable/icons8_wallet_128px"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_toLeftOf="@+id/lin_wallet"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_wallet"
+                android:paddingLeft="@dimen/space_5"
+
+                android:textSize="18dp"
+                style="@style/headingText"
+                android:text="10"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tv_name"
+            android:layout_height="wrap_content"
+
+            android:text="Points"
+            android:textSize="16dp"
+            android:gravity="center"
+           />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tv_name"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_withdraw_msg"
+            android:text="Points"
+            android:textSize="16dp"
+            android:layout_marginTop="@dimen/space_20"
+            android:gravity="center"
+           />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_menu"/>
+        </RelativeLayout>
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tv_name"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_trans"
+            android:text="Transaction List "
+            android:padding="@dimen/space_2"
+            android:textSize="16dp"
+            android:layout_marginTop="@dimen/space_20"
+
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_trans"/>
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>

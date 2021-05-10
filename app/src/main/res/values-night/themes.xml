@@ -1,0 +1,62 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.JollyMatka.Material" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/descText</item>
+        <item name="android:fontFamily">@font/mons</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryDark</item>
+    </style>
+    <style name="Theme.JollyMatka.Material2" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/descText</item>
+        <item name="android:fontFamily">@font/mons</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryDark</item>
+    </style>
+
+    <style name="bottomsheet" parent="Animation.Design.BottomSheetDialog">
+        <item name="color">@color/white</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="Theme.JollyMatka.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.JollyMatka.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="headingText" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/mons</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="descText" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/mons</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="appnameText" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/mons</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="ToolbarColoredBackArrowMaterial" parent="Theme.JollyMatka.Material">
+        <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+
+</resources>

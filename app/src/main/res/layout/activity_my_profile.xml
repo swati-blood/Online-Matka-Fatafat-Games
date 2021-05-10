@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MyProfileActivity">
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_20"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/space_15"
+                android:layout_margin="@dimen/space_10"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_20"
+                    android:orientation="vertical">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="@dimen/space_20"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/logo"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_toLeftOf="@+id/lin_wallet"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_title"
+                        android:text="Withdraw Methods"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:visibility="gone"
+                        style="@style/headingText"
+                        android:layout_margin="@dimen/space_20"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Name"
+
+                android:padding="@dimen/space_5"/>
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_name"
+                android:hint="Enter your Name"
+                android:textColorHint="@color/grey"
+
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Mobile Number"
+
+                android:padding="@dimen/space_5"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_mobile"
+                android:hint="Mobile Number"
+                android:inputType="number"
+                android:textColorHint="@color/grey"
+
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Email "
+
+                android:padding="@dimen/space_5"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_email"
+                android:hint="Enter your email"
+                android:textColorHint="@color/grey"
+                />
+
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cornerRadius="@dimen/space_20"
+                app:backgroundTint="@color/colorPrimaryDark"
+                android:text="Submit"
+                android:textColor="@color/white"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/space_10"
+                android:id="@+id/btn_submit"/>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/space_10"
+        android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+
+        android:layout_marginLeft="@dimen/space_5"
+        android:layout_marginRight="@dimen/space_5"
+        android:gravity="center"
+        android:paddingTop="@dimen/space_10"
+        android:paddingBottom="@dimen/space_10"
+        android:background="@drawable/bg_button_outline">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/lin_whtsapp"
+            android:layout_weight="1.5"
+
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_toLeftOf="@+id/lin_wallet"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_game"
+                android:paddingLeft="@dimen/space_5"
+                android:textColor="@color/black"
+
+                style="@style/headingText"
+                android:text="10"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/lin_call"
+            android:layout_weight="1.5"
+
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_toLeftOf="@+id/lin_wallet"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_rate"
+                android:paddingLeft="@dimen/space_5"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                style="@style/headingText"
+                android:text="10"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

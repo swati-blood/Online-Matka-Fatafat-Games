@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="in.games.jollygames">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.JollyMatka.Material">
+        <activity android:name=".Activity.BankDetailActivity"></activity>
+        <activity android:name=".Activity.RequestFundsActivity" />
+        <activity android:name=".Activity.FullSangamActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity android:name=".Activity.HalfSangamActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity android:name=".Activity.DigitPanaActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity android:name=".Activity.GameRateActivity" />
+        <activity android:name=".Activity.GameListActivity" />
+        <activity android:name=".Activity.HowtoPlayActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity android:name=".Activity.HistryActivity" />
+        <activity android:name=".Activity.UpiDetailsActivity" />
+        <activity android:name=".Activity.WithdrawMethodsActivity" />
+        <activity android:name=".Activity.WithdrawRequest" />
+        <activity android:name=".Activity.MyProfileActivity" />
+        <activity
+            android:name=".Activity.ResetPasswordActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity
+            android:name=".Activity.VerifyOtpActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity
+            android:name=".Activity.SendOtpActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity
+            android:name=".Activity.RegisterActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:theme="@style/Theme.JollyMatka.Material2" />
+        <activity
+            android:name=".Activity.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.JollyMatka.Material2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
