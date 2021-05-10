@@ -3,12 +3,10 @@ package in.games.jollygames.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -19,7 +17,6 @@ import com.shreyaspatil.EasyUpiPayment.model.TransactionDetails;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import in.games.jollygames.Common.Common;
@@ -45,7 +42,7 @@ public class RequestFundsActivity extends AppCompatActivity implements View.OnCl
     private EasyUpiPayment mEasyUpiPayment;
     int min_amt = 0;
     boolean upi_flag = false;
-    String upi = "", upi_name = "", upi_desc = "", upi_type = "", transactionId = "", upi_status = "";
+    String upi = "", upi_name = "", upi_desc = "", upi_type = "", transactionId = "", upi_status = "",whatsapp_no="";
     String TAG = RequestFundsActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +56,7 @@ public class RequestFundsActivity extends AppCompatActivity implements View.OnCl
         loadingBar = new LoadingBar(ctx);
         session_management = new Session_management(ctx);
         binding.btnSubmit.setOnClickListener(this);
+        binding.linWhtsapp.setOnClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Funds Request");
         common.getWalletAmount(new OnGetWallet() {
@@ -71,6 +69,9 @@ public class RequestFundsActivity extends AppCompatActivity implements View.OnCl
         common.getConfigData(new OnConfigData() {
             @Override
             public void onGetConfigData(ConfigModel model) {
+                binding.tvWithdrawMsg.setText(model.getAdd_text());
+                whatsapp_no = model.getWhatsapp();
+                binding.tvWhatsaap.setText(model.getWhatsapp());
 
                 min_amt = Integer.parseInt(common.checkNullNumber(model.getMin_amount().toString()));
                 upi = common.checkNullString(model.getUpi()).toString();
@@ -83,38 +84,7 @@ public class RequestFundsActivity extends AppCompatActivity implements View.OnCl
 
             }
         });
-        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String point = binding.etPoints.getText().toString();
-                if (point.isEmpty()) {
-                    binding.etPoints.setError("Enter Points ");
-                } else {
-                    int points = Integer.parseInt(common.checkNullNumber(point));
-                    if (points < min_amt) {
-                        common.showToast("Minimum Request Amount is " + min_amt);
-                    } else {
 
-                            transactionId = "TXN" + System.currentTimeMillis();
-                            String payeeVpa = upi;
-                            String payeeName = upi_name;
-                            String transactionRefId = transactionId;
-                            String description = upi_desc;
-                            String amount = point + ".00";
-                            if (upi_status.equals("0")) {
-                                addRequest(session_management.getUserDetails().get(KEY_ID), point, "pending", transactionRefId);
-
-                            } else {
-                                payViaUpi(transactionId, payeeVpa, payeeName, transactionRefId, description, amount);
-
-                            }
-
-                    }
-                }
-            }
-
-
-        });
 
     }
 
@@ -131,6 +101,34 @@ public class RequestFundsActivity extends AppCompatActivity implements View.OnCl
         switch (view.getId())
         {
             case R.id.btn_submit:
+                String point = binding.etPoints.getText().toString();
+                if (point.isEmpty()) {
+                    binding.etPoints.setError("Enter Points ");
+                } else {
+                    int points = Integer.parseInt(common.checkNullNumber(point));
+                    if (points < min_amt) {
+                        common.showToast("Minimum Request Amount is " + min_amt);
+                    } else {
+
+                        transactionId = "TXN" + System.currentTimeMillis();
+                        String payeeVpa = upi;
+                        String payeeName = upi_name;
+                        String transactionRefId = transactionId;
+                        String description = upi_desc;
+                        String amount = point + ".00";
+                        if (upi_status.equals("0")) {
+                            addRequest(session_management.getUserDetails().get(KEY_ID), point, "pending", transactionRefId);
+
+                        } else {
+                            payViaUpi(transactionId, payeeVpa, payeeName, transactionRefId, description, amount);
+
+                        }
+
+                    }
+                }
+                break;
+            case R.id.lin_whtsapp:
+                common.whatsapp(whatsapp_no,"Hi ! Admin");
                 break;
         }
     }

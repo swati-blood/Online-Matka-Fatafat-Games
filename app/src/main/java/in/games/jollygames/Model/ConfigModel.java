@@ -1,10 +1,12 @@
 package in.games.jollygames.Model;
 
-
+/**
+ * Developed by Binplus Technologies pvt. ltd.  on 04,January,2021
+ */
 public class ConfigModel {
     String id,version,app_link,share_link,message,home_text,withdraw_text,withdraw_no,tag_line,min_amount,msg_status;
     String w_saturday,w_sunday,w_amount,withdraw_limit,upi,upi_name,upi_desc,upi_type,upi_status;
-    String whatsapp,call_no,share_msg;
+    String whatsapp,call_no,share_msg,error_msg,add_text;
     String terms_link,use_link,min_bet_amt,min_wallet,min_wallet_msg,starline_status,withdraw_status,add_point_status;
     String time_slot;
 
@@ -14,6 +16,22 @@ public class ConfigModel {
 
     public void setTime_slot(String time_slot) {
         this.time_slot = time_slot;
+    }
+
+    public String getError_msg() {
+        return error_msg;
+    }
+
+    public void setError_msg(String error_msg) {
+        this.error_msg = error_msg;
+    }
+
+    public String getAdd_text() {
+        return add_text;
+    }
+
+    public void setAdd_text(String add_text) {
+        this.add_text = add_text;
     }
 
     public String getId() {

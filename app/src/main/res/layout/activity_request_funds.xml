@@ -75,6 +75,41 @@
                         android:layout_marginTop="@dimen/space_20"
                         android:gravity="center"
                         />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/space_5"
+
+                        android:layout_margin="@dimen/space_10"
+                  >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lin_whtsapp"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/space_10"
+                        android:layout_centerInParent="true"
+                      >
+                        <ImageView
+                            android:layout_width="@dimen/space_30"
+                            android:layout_height="@dimen/space_30"
+
+                            android:src="@drawable/icons8_whatsapp_96px"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_toLeftOf="@+id/lin_wallet"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_whatsaap"
+                            android:paddingLeft="@dimen/space_5"
+                            android:textColor="@color/white"
+                            android:textSize="18dp"
+                            style="@style/headingText"
+
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -83,6 +118,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="@dimen/space_15"
                 android:layout_margin="@dimen/space_10"
+                android:visibility="gone"
                 app:cardUseCompatPadding="true"
 
                 >

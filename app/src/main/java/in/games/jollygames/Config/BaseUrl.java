@@ -49,6 +49,9 @@ public class BaseUrl {
     public static final String Url_transaction_history=BASE_URL+"transaction";
     public static final String Url_single_matka=BASE_URL+"single_matka";
 
+    public static final String URL_GET_SLIDER=BASE_URL+"get_sliders";
+    public static final String URL_SLIDER_IMG="https://jollygames.anshuwap.com/assets/images/sliders/";
+
 
 
 

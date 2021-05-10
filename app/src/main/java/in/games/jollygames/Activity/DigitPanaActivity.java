@@ -1,14 +1,11 @@
 package in.games.jollygames.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.Log;
@@ -16,21 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import in.games.jollygames.Adapter.TableAdaper;
 import in.games.jollygames.Adapter.TableRecyclerAdapter;
 import in.games.jollygames.Common.Common;
 import in.games.jollygames.Interfaces.OnConfigData;
 import in.games.jollygames.Interfaces.OnGetMatka;
 import in.games.jollygames.Interfaces.OnGetWallet;
-import in.games.jollygames.Interfaces.OnSuccess;
 import in.games.jollygames.Model.ConfigModel;
-import in.games.jollygames.Model.GameModel;
 import in.games.jollygames.Model.MatkasObjects;
 import in.games.jollygames.Model.TableModel;
 import in.games.jollygames.Model.WalletObjects;
@@ -38,9 +31,7 @@ import in.games.jollygames.R;
 import in.games.jollygames.databinding.ActivityDigitPanaBinding;
 import in.games.jollygames.utils.LoadingBar;
 import in.games.jollygames.utils.Session_management;
-import in.games.jollygames.utils.ToastMsg;
 
-import static in.games.jollygames.Config.Constants.min_bet_amt;
 import static in.games.jollygames.utils.InputData.doublePanna;
 import static in.games.jollygames.utils.InputData.jodiDigits;
 import static in.games.jollygames.utils.InputData.singleDigit;
@@ -133,7 +124,9 @@ public class DigitPanaActivity extends AppCompatActivity implements View.OnClick
             case "3":
                 digitList = Arrays.asList(jodiDigits);
                 binding.rbClose.setVisibility(View.GONE);
+                binding.rbOpen.setVisibility(View.GONE);
                 binding.tvDigit.setText("Jodi Digit");
+                bet_type ="Open";
                 binding.etDigit.setFilters( new InputFilter[] { new InputFilter.LengthFilter(2) } );
                 break;
             case "7":
@@ -256,6 +249,9 @@ public class DigitPanaActivity extends AppCompatActivity implements View.OnClick
             else {
 
                 list.add(new TableModel(digit,points,bet_type));
+                binding.etDigit.setText("");
+                binding.etDigit.clearListSelection();
+                binding.etPoints.setText("");
                 Log.e("list","---"+list.size()+"---"+list.toString());
                 tableAdaper.notifyDataSetChanged();
                 if (list.size()>0) {

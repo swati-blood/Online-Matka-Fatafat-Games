@@ -70,7 +70,7 @@
             android:layout_below="@+id/tv_name"
             android:layout_height="wrap_content"
             android:id="@+id/tv_withdraw_msg"
-            android:text="Points"
+
             android:textSize="16dp"
             android:layout_marginTop="@dimen/space_20"
             android:gravity="center"

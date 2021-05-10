@@ -58,7 +58,8 @@ public class NewMatkaAdpater extends RecyclerView.Adapter<NewMatkaAdpater.ViewHo
         String endTime="";
         String dy=new SimpleDateFormat("EEEE").format(new Date());
 //        String dy="Sunday";
-        if(dy.equalsIgnoreCase("Sunday")){
+        if(dy.equalsIgnoreCase("Sunday"))
+        {
           if(getValidTime(model.getStart_time().toString(),model.getEnd_time().toString())){
               startTime=model.getStart_time();
               endTime=model.getEnd_time();
@@ -66,7 +67,9 @@ public class NewMatkaAdpater extends RecyclerView.Adapter<NewMatkaAdpater.ViewHo
               startTime=model.getBid_start_time();
               endTime=model.getBid_end_time();
           }
-        }else if(dy.equalsIgnoreCase("Saturday")){
+        }
+        else if(dy.equalsIgnoreCase("Saturday"))
+        {
             if(getValidTime(model.getSat_start_time().toString(),model.getSat_end_time().toString())){
                 startTime=model.getSat_start_time();
                 endTime=model.getSat_end_time();
@@ -74,13 +77,13 @@ public class NewMatkaAdpater extends RecyclerView.Adapter<NewMatkaAdpater.ViewHo
                 startTime=model.getBid_start_time();
                 endTime=model.getBid_end_time();
             }
-        }else{
+        }
+        else{
             startTime=model.getBid_start_time();
             endTime=model.getBid_end_time();
         }
         Log.e("matka_time", "onBindViewHolder: "+model.getName()+"--"+startTime+"\n "+endTime );
-        holder.txtmatkaBid_openTime.setText("OPEN\n"+common.get24To12Format(startTime));
-        holder.txtmatkaBid_closeTime.setText("CLOSE \n"+common.get24To12Format(endTime));
+
 
         holder.txtMatka_startingNo.setText(getValidNumber(model.getStarting_num(),1)+"-"+getValidNumber(model.getNumber(),2)+"-"+getValidNumber(model.getEnd_num(),3));
 
@@ -110,17 +113,25 @@ public class NewMatkaAdpater extends RecyclerView.Adapter<NewMatkaAdpater.ViewHo
       if(dy.equalsIgnoreCase("Sunday")){
           if(getValidTime(model.getStart_time().toString(),model.getEnd_time().toString())){
               getPlayButton(as,c,holder.tv_status,holder.btnPlay);
+              holder.txtmatkaBid_openTime.setText("OPEN\n"+common.get24To12Format(model.getStart_time()));
+              holder.txtmatkaBid_closeTime.setText("CLOSE \n"+common.get24To12Format(model.getEnd_time()));
           }else
           {
               setInactiveStatus(holder.tv_status,holder.btnPlay);
+              holder.txtmatkaBid_openTime.setText("OPEN\n"+common.get24To12Format(model.getBid_start_time()));
+              holder.txtmatkaBid_closeTime.setText("CLOSE \n"+common.get24To12Format(model.getBid_end_time()));
 //              holder.btnPlay.setVisibility(View.GONE);
           }
       }else if(dy.equalsIgnoreCase("Saturday")){
           if(getValidTime(model.getSat_start_time().toString(),model.getSat_end_time().toString())){
               getPlayButton(as,c,holder.tv_status,holder.btnPlay);
+              holder.txtmatkaBid_openTime.setText("OPEN\n"+common.get24To12Format(model.getSat_start_time()));
+              holder.txtmatkaBid_closeTime.setText("CLOSE \n"+common.get24To12Format(model.getSat_end_time()));
           }else
           {
               setInactiveStatus(holder.tv_status,holder.btnPlay);
+              holder.txtmatkaBid_openTime.setText("OPEN\n"+common.get24To12Format(model.getBid_start_time()));
+              holder.txtmatkaBid_closeTime.setText("CLOSE \n"+common.get24To12Format(model.getBid_end_time()));
 
 //              holder.btnPlay.setVisibility(View.GONE);
           }
@@ -128,13 +139,15 @@ public class NewMatkaAdpater extends RecyclerView.Adapter<NewMatkaAdpater.ViewHo
 
           if(getValidTime(model.getBid_start_time().toString(),model.getBid_end_time().toString())){
               getPlayButton(as,c,holder.tv_status,holder.btnPlay);
-          }else
+          }
+          else
           {
               setInactiveStatus(holder.tv_status,holder.btnPlay);
 
-//              holder.btnPlay.setVisibility(View.GONE);
           }
-//          getPlayButton(as,c,holder.tv_status,holder.btnPlay);
+          holder.txtmatkaBid_openTime.setText("OPEN\n"+common.get24To12Format(model.getBid_start_time()));
+          holder.txtmatkaBid_closeTime.setText("CLOSE \n"+common.get24To12Format(model.getBid_end_time()));
+
       }
 
         holder.rel_matka.setOnClickListener(new View.OnClickListener() {
@@ -284,6 +297,7 @@ public void setActiveStatus(TextView tv, ImageView btn){
             }else{
                 err=4;
                 is_error=true;
+
             }
         }
         else

@@ -1,35 +1,32 @@
 package in.games.jollygames.Fragment;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,25 +37,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import in.games.jollygames.Activity.LoginActivity;
 import in.games.jollygames.Adapter.NewMatkaAdpater;
+import in.games.jollygames.AppController;
 import in.games.jollygames.Common.Common;
-import in.games.jollygames.Config.Constants;
 import in.games.jollygames.Interfaces.OnConfigData;
 import in.games.jollygames.Interfaces.OnGetWallet;
 import in.games.jollygames.Model.ConfigModel;
 import in.games.jollygames.Model.MatkasObjects;
-import in.games.jollygames.Model.TimeSlots;
+import in.games.jollygames.Model.SliderModel;
 import in.games.jollygames.Model.WalletObjects;
 import in.games.jollygames.R;
 import in.games.jollygames.databinding.FragmentHomeBinding;
 import in.games.jollygames.utils.ConnectivityReceiver;
+import in.games.jollygames.utils.CustomJsonRequest;
 import in.games.jollygames.utils.LoadingBar;
 import in.games.jollygames.utils.Session_management;
 import in.games.jollygames.utils.ToastMsg;
 
+import static in.games.jollygames.Config.BaseUrl.URL_GET_SLIDER;
 import static in.games.jollygames.Config.BaseUrl.URL_Matka;
-import static in.games.jollygames.Config.BaseUrl.URL_TIME_SLOTS;
+import static in.games.jollygames.Config.BaseUrl.URL_SLIDER_IMG;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -109,6 +107,7 @@ ArrayList<MatkasObjects>matkaList ;
                 if (checkVersion(v)) {
                     if (ConnectivityReceiver.isConnected()) {
                         getMatkaData();
+                        getSliderRequest();
                     } else {
                         common.showToast("No Internet Connection");
                     }
@@ -300,5 +299,51 @@ ArrayList<MatkasObjects>matkaList ;
             return true;
         else
             return false;
+    }
+
+    private void getSliderRequest() {
+
+        HashMap<String, String> params = new HashMap<>();
+
+
+      CustomJsonRequest req = new CustomJsonRequest(Request.Method.POST, URL_GET_SLIDER, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("sliders", params.toString() + "\n" + response.toString());
+                        try {
+//                            String slder_type  = response.getString("slider_type");
+                            if (response.has("data")) {
+                                JSONArray slider_arr = response.getJSONArray("data");
+                                Gson gson =new Gson();
+                                Type typeList=new TypeToken<List<SliderModel>>(){}.getType();
+                                ArrayList<SliderModel>list=gson.fromJson(slider_arr.toString(),typeList);
+                                Picasso.with(getActivity()).load(URL_SLIDER_IMG+list.get(0).getImage()).fit().into(binding.ivHomeSlider, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        binding.progressBar.setVisibility(View.GONE);
+                                        binding.ivHomeSlider.setVisibility(View.VISIBLE);
+                                    }
+
+                                    @Override
+                                    public void onError() {
+
+                                    }
+                                });
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            toastMsg.toastIconError(e.getMessage());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+           common.showVolleyError(error);
+            }
+        });
+        AppController.getInstance().addToRequestQueue(req);
+
     }
 }

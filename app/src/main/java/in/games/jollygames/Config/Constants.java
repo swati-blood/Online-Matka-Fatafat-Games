@@ -37,5 +37,6 @@ public static final String PREFS_NAME="Maplex Matka";
     public static final String REV_POSITION="position";
 
     public static final int REQUEST_TIMEOUT = 1000;
+    public static final String  REQUEST_TIMEOUT_ERR = "timeout";
     public static int min_bet_amt = 0;
 }

@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -18,13 +16,9 @@ import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +60,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import in.games.jollygames.Activity.GameListActivity;
-import in.games.jollygames.Activity.LoginActivity;
 import in.games.jollygames.Activity.MainActivity;
 import in.games.jollygames.Adapter.TableAdaper;
 import in.games.jollygames.AppController;
@@ -80,6 +73,7 @@ import in.games.jollygames.Model.ConfigModel;
 import in.games.jollygames.Model.MatkasObjects;
 import in.games.jollygames.Model.Starline_Objects;
 import in.games.jollygames.Model.TableModel;
+import in.games.jollygames.Model.TimeSlots;
 import in.games.jollygames.Model.WalletObjects;
 import in.games.jollygames.R;
 import in.games.jollygames.utils.ConnectivityReceiver;
@@ -89,11 +83,11 @@ import in.games.jollygames.utils.LoadingBar;
 import in.games.jollygames.utils.Session_management;
 
 import static in.games.jollygames.Config.BaseUrl.URL_GET_WALLET_AMOUNT;
-import static in.games.jollygames.Config.BaseUrl.URL_INDEX;
 import static in.games.jollygames.Config.BaseUrl.URL_MOBILE;
 import static in.games.jollygames.Config.BaseUrl.URL_TIME_SLOTS;
 import static in.games.jollygames.Config.BaseUrl.Url_single_matka;
 import static in.games.jollygames.Config.Constants.KEY_ID;
+import static in.games.jollygames.Config.Constants.REQUEST_TIMEOUT_ERR;
 
 
 /**
@@ -152,7 +146,8 @@ public class Common {
     public String VolleyErrorMessage(VolleyError error) {
         String str_error = "";
         if (error instanceof TimeoutError) {
-            str_error = "Connection Timeout";
+//            str_error = "Connection Timeout";
+            str_error = REQUEST_TIMEOUT_ERR;
         } else if (error instanceof AuthFailureError) {
             str_error = "Session Timeout";
             //TODO
@@ -1251,10 +1246,15 @@ public class Common {
 
 
                     ArrayList<ConfigModel> list=new ArrayList<>();
+                    ArrayList<TimeSlots> tlist=new ArrayList<>();
                     Gson gson =new Gson();
                     Type typeList=new TypeToken<List<ConfigModel>>(){}.getType();
                     list=gson.fromJson(object.getJSONArray("config").toString(),typeList);
+                    Type typeListt=new TypeToken<List<TimeSlots>>(){}.getType();
+                    tlist=gson.fromJson(object.getJSONArray("time_slots").toString(),typeList);
+                    list.get(0).setTime_slot(object.getJSONArray("time_slots").toString());
                     onConfigData.onGetConfigData(list.get(0));
+//                    onConfigData.onGetTimeSlots(tlist.get(0));
 
                 }catch (Exception ex){
                     ex.printStackTrace();

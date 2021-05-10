@@ -26,7 +26,6 @@ import in.games.jollygames.Interfaces.OnConfigData;
 import in.games.jollygames.Interfaces.SmsListener;
 import in.games.jollygames.Model.ConfigModel;
 import in.games.jollygames.R;
-import in.games.jollygames.databinding.ActivitySendOtpBinding;
 import in.games.jollygames.databinding.ActivityVerifyOtpBinding;
 import in.games.jollygames.utils.LoadingBar;
 import in.games.jollygames.utils.Session_management;
@@ -34,7 +33,6 @@ import in.games.jollygames.utils.SmsReceiver;
 import in.games.jollygames.utils.ToastMsg;
 
 import static in.games.jollygames.Config.BaseUrl.URL_GENERATE_OTP;
-import static in.games.jollygames.Config.BaseUrl.URL_VERIFICATION;
 
 public class VerifyOtpActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityVerifyOtpBinding binding ;

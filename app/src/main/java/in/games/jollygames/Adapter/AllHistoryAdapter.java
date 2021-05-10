@@ -1,9 +1,11 @@
 package in.games.jollygames.Adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,7 +65,7 @@ public class AllHistoryAdapter extends RecyclerView.Adapter<AllHistoryAdapter.Vi
 
 
         //holder.txt_matka_name.setText(model.getName()+" ( "+model.getBet_type()+" ) ");
-        holder.txt_bid_digit.setText("Digit: "+model.getDigits());
+        holder.txt_bid_digit.setText(model.getDigits());
         holder.txt_bid_id.setText(model.getId());
         holder.txt_bid_points.setText("Points:"+model.getPoints());
         holder.txt_play_for.setText(model.getDate());
@@ -72,15 +74,19 @@ public class AllHistoryAdapter extends RecyclerView.Adapter<AllHistoryAdapter.Vi
      if (model.getStatus().equals("pending"))
      {
          holder.txt_result.setText("Result not announced");
+         holder.iv_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.icons8_minus_96px));
+
 //         holder.txt_result.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.icons8_neutral_16px,0);
      }
      else if(model.getStatus().equals("won")||model.getStatus().equals("win"))
      {
-         holder.txt_result.setText("You wont the bid");
+         holder.txt_result.setText("You won the bid");
+        holder.iv_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.icons8_add_96px));
 //         holder.txt_result.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.icons8_happy_16px,0);
      }
      else if(model.getStatus().equals("loss"))
      {  holder.txt_result.setText("You Lost the bid");
+         holder.iv_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.icons8_minus_96px));
 //         holder.txt_result.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.icons8_sad_16px,0);
      }
 
@@ -105,6 +111,8 @@ public class AllHistoryAdapter extends RecyclerView.Adapter<AllHistoryAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txt_matka_name ,txt_play_on ,txt_play_for,txt_bid_id,txt_bid_digit,txt_bid_points,txt_bid_time,txt_result;
+        ImageView iv_icon;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_matka_name= itemView.findViewById(R.id.game_name);
@@ -115,6 +123,7 @@ public class AllHistoryAdapter extends RecyclerView.Adapter<AllHistoryAdapter.Vi
             txt_bid_points= itemView.findViewById(R.id.points);
             txt_bid_time= itemView.findViewById(R.id.txtDate);
             txt_result= itemView.findViewById(R.id.status);
+            iv_icon = itemView.findViewById(R.id.iv_icon);
         }
     }
 }

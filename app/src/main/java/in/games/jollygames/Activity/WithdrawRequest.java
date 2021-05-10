@@ -3,9 +3,7 @@ package in.games.jollygames.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,17 +12,13 @@ import android.widget.ArrayAdapter;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import in.games.jollygames.Common.Common;
 import in.games.jollygames.Interfaces.OnConfigData;
@@ -38,9 +32,7 @@ import in.games.jollygames.utils.LoadingBar;
 import in.games.jollygames.utils.Session_management;
 
 import static in.games.jollygames.Config.BaseUrl.URL_INSERT_REQUEST;
-import static in.games.jollygames.Config.BaseUrl.URL_TIME_SLOTS;
 import static in.games.jollygames.Config.Constants.KEY_ACCOUNNO;
-import static in.games.jollygames.Config.Constants.KEY_BANK_NAME;
 import static in.games.jollygames.Config.Constants.KEY_HOLDER;
 import static in.games.jollygames.Config.Constants.KEY_ID;
 import static in.games.jollygames.Config.Constants.KEY_IFSC;
@@ -73,6 +65,7 @@ public class WithdrawRequest extends AppCompatActivity {
         loadingBar = new LoadingBar(ctx);
         session_management = new Session_management(ctx);
         o_list = new ArrayList<>();
+        timeList = new ArrayList<>();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Withdraw Request");
         o_list.clear();
@@ -143,10 +136,11 @@ public class WithdrawRequest extends AppCompatActivity {
                     for (int i = 0 ; i<arr.length();i++)
                     {
                         TimeSlots timeSlots = new TimeSlots();
-                        timeSlots.setStart_time(arr.getString(Integer.parseInt("start_time")));
-                        timeSlots.setEnd_time(arr.getString(Integer.parseInt("end_time")));
-                        timeSlots.setId(arr.getString(Integer.parseInt("id")));
-                        timeSlots.setStatus(arr.getString(Integer.parseInt("status")));
+                        JSONObject object = arr.getJSONObject(i);
+                        timeSlots.setStart_time(object.getString("start_time"));
+                        timeSlots.setEnd_time(object.getString("end_time"));
+                        timeSlots.setId(object.getString("id"));
+                        timeSlots.setStatus(object.getString("status"));
                         timeList.add(timeSlots);
                     }
                     wMinAmt = Integer.parseInt(model.getW_amount());
@@ -156,6 +150,7 @@ public class WithdrawRequest extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
         });
 
         common.getWalletAmount(new OnGetWallet() {
