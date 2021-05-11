@@ -271,6 +271,7 @@ binding.btnChange.setOnClickListener(this);
                      }
                       else
                   {
+
                       addData(digit+"-"+pana,points,bet_type);
                   }
             }
@@ -300,16 +301,21 @@ binding.btnChange.setOnClickListener(this);
 
     public void addData(String digit ,String point ,String type)
     {
-        list.add(new TableModel(digit,point,type));
-
-        tableAdaper.notifyDataSetChanged();
-        if (list.size()>0) {
-
-            binding.btnSubmit.setVisibility(View.VISIBLE);
-        }
-        else
+        if (betType==1 )
         {
-            binding.btnSubmit.setVisibility(View.GONE);
+            common.showToast("Bidding is closed for today !");
+        }
+        else {
+
+            list.add(new TableModel(digit, point, type));
+
+            tableAdaper.notifyDataSetChanged();
+            if (list.size() > 0) {
+
+                binding.btnSubmit.setVisibility(View.VISIBLE);
+            } else {
+                binding.btnSubmit.setVisibility(View.GONE);
+            }
         }
 
 
@@ -331,23 +337,23 @@ binding.btnChange.setOnClickListener(this);
         tableAdaper.notifyDataSetChanged();
     }
 
-    public void getBroadcast()
-    {
-        mMessageReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (list.size()>0) {
-
-                    binding.btnSubmit.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    binding.btnSubmit.setVisibility(View.GONE);
-                }
-
-//                Toast.makeText(MainActivity.this,ItemName +" "+qty ,Toast.LENGTH_SHORT).show();
-            }
-        };
-    }
+//    public void getBroadcast()
+//    {
+//        mMessageReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                if (list.size()>0) {
+//
+//                    binding.btnSubmit.setVisibility(View.VISIBLE);
+//                }
+//                else
+//                {
+//                    binding.btnSubmit.setVisibility(View.GONE);
+//                }
+//
+////                Toast.makeText(MainActivity.this,ItemName +" "+qty ,Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//    }
 
 }

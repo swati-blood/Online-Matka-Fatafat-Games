@@ -243,15 +243,19 @@ public class FullSangamActivity extends AppCompatActivity implements View.OnClic
 
     public void addData(String digit ,String point ,String type)
     {
-        list.add(new TableModel(digit,point,type));
-        tableAdaper.notifyDataSetChanged();
-        if (list.size()>0) {
-
-            binding.btnSubmit.setVisibility(View.VISIBLE);
-        }
-        else
+        if (betType==1 )
         {
-            binding.btnSubmit.setVisibility(View.GONE);
+            common.showToast("Bidding is closed for today !");
+        }
+        else {
+            list.add(new TableModel(digit, point, type));
+            tableAdaper.notifyDataSetChanged();
+            if (list.size() > 0) {
+
+                binding.btnSubmit.setVisibility(View.VISIBLE);
+            } else {
+                binding.btnSubmit.setVisibility(View.GONE);
+            }
         }
 
 
